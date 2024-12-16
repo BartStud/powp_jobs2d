@@ -10,6 +10,7 @@ import edu.kis.legacy.drawer.panel.DrawPanelController;
 import edu.kis.powp.appbase.Application;
 import edu.kis.powp.jobs2d.drivers.adapter.DrawerDriver;
 import edu.kis.powp.jobs2d.drivers.adapter.SpecialDrawerDriver;
+import edu.kis.powp.jobs2d.drivers.command.*;
 import edu.kis.powp.jobs2d.events.SelectChangeVisibleOptionListener;
 import edu.kis.powp.jobs2d.features.DrawerFeature;
 import edu.kis.powp.jobs2d.features.DriverFeature;
@@ -27,6 +28,13 @@ public class TestJobs2dPatterns {
 	private static void setupPresetTests(Application application) {
 		FigureFeature.addTest("Figure Joe 1", FiguresJoe::figureScript1);
 		FigureFeature.addTest("Figure Joe 2", FiguresJoe::figureScript2);
+		DriverCommand drawSquare = SquareCommandFactory.createCommand();
+		FigureFeature.addTest("Command Square", drawSquare::execute);
+		DriverCommand drawCircle = CircleCommandFactory.createCommand();
+		FigureFeature.addTest("Command Circle", drawCircle::execute);
+
+		DriverCommand drawFigJoe2 = CaptureCommandsFactory.createCommand(FiguresJoe::figureScript2);
+		FigureFeature.addTest("Command JoeFig 2", drawFigJoe2::execute);
 	}
 
 	/**
